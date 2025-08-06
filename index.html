@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>escolhe direito</title>
+    <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ffffff, #35e853);
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .botoes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #sim {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    #nao {
+      background-color: #f44336;
+      color: white;
+      position: absolute; 
+    }
+
+        @keyframes pular {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+        }
+    #palmeiras {
+        margin: 20px auto 0 auto;
+        width: 300px;
+        height: auto;
+        display: none;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        animation: pular 1s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Vai torcer pro palmeiras por mim?</h1>
+    <div class="botoes">
+      <button id="sim">Sim</button>
+      <button id="nao">Não</button>
+    </div>
+    <img id="palmeiras" src="/img/palmeiras.jpeg" alt="palmeiras"/>
+    <audio id="hino" src="/audio/hino.mp3" preload="auto"></audio>
+  </div>
+
+  <script>
+    const titulo = document.querySelector("h1");
+    const botoes = document.querySelector(".botoes");
+    const nao = document.getElementById("nao");
+    const sim = document.getElementById("sim");
+    const palmeiras = document.getElementById("palmeiras");
+
+    nao.addEventListener("mouseover", () => {
+      const larguraJanela = window.innerWidth;
+      const alturaJanela = window.innerHeight;
+      const x = Math.random() * (larguraJanela - 100);
+      const y = Math.random() * (alturaJanela - 50);
+
+      nao.style.left = `${x}px`;
+      nao.style.top = `${y}px`;
+    });
+
+    document.getElementById("sim").addEventListener("click", () => {
+      titulo.textContent = "DALEEEEE!";
+      botoes.style.display = "none";
+      palmeiras.style.display = "block";
+      hino.play();
+      palmeiras.style.animation = "pular 1s infinite";
+    });
+  </script>
+</body>
+</html>
