@@ -29,6 +29,7 @@
     }
 
     button {
+      position: absolute;
       padding: 15px 30px;
       font-size: 18px;
       border: none;
@@ -89,7 +90,7 @@
     const palmeiras = document.getElementById("palmeiras");
     const hino = document.getElementById("hino");
 
-    // função para mover o botão
+
     function moverBotao() {
       const larguraJanela = window.innerWidth;
       const alturaJanela = window.innerHeight;
@@ -100,11 +101,11 @@
       nao.style.top = `${y}px`;
     }
 
-    // no pc usa mouseover, no celular usa touchstart
+    
     nao.addEventListener("mouseover", moverBotao);
     nao.addEventListener("touchstart", moverBotao);
 
-    // quando clicar em "sim"
+    
     sim.addEventListener("click", () => {
       titulo.textContent = "DALEEEEE!";
       botoes.style.display = "none";
