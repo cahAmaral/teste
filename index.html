@@ -46,26 +46,29 @@
       background-color: #f44336;
       color: white;
       position: absolute; 
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
     }
 
-        @keyframes pular {
-    0%, 100% {
-        transform: translateY(0);
+    @keyframes pular {
+      0%, 100% {
+          transform: translateY(0);
+      }
+      50% {
+          transform: translateY(-30px);
+      }
     }
-    50% {
-        transform: translateY(-30px);
-    }
-        }
+
     #palmeiras {
-        margin: 20px auto 0 auto;
-        max-width: 80%;
-        height: auto;
-        display: none;
-        border-radius: 15px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        animation: pular 1s infinite;
+      margin: 20px auto 0 auto;
+      width: 300px;
+      height: auto;
+      display: none;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-  </style>
+    </style>
 </head>
 <body>
   <div class="container">
@@ -74,8 +77,8 @@
       <button id="sim">Sim</button>
       <button id="nao">Não</button>
     </div>
-    <img id="palmeiras" src="/img/palmeiras.jpeg" alt="palmeiras"/>
-    <audio id="hino" src="/audio/hino.mp3" preload="auto"></audio>
+    <img id="palmeiras" src="img/palmeiras.jpeg" alt="palmeiras"/>
+    <audio id="hino" src="audio/hino.mp3" preload="auto"></audio>
   </div>
 
   <script>
@@ -84,8 +87,10 @@
     const nao = document.getElementById("nao");
     const sim = document.getElementById("sim");
     const palmeiras = document.getElementById("palmeiras");
+    const hino = document.getElementById("hino");
 
-    nao.addEventListener("mouseover", () => {
+    // função para mover o botão
+    function moverBotao() {
       const larguraJanela = window.innerWidth;
       const alturaJanela = window.innerHeight;
       const x = Math.random() * (larguraJanela - 100);
@@ -93,14 +98,19 @@
 
       nao.style.left = `${x}px`;
       nao.style.top = `${y}px`;
-    });
+    }
 
-    document.getElementById("sim").addEventListener("click", () => {
+    // no pc usa mouseover, no celular usa touchstart
+    nao.addEventListener("mouseover", moverBotao);
+    nao.addEventListener("touchstart", moverBotao);
+
+    // quando clicar em "sim"
+    sim.addEventListener("click", () => {
       titulo.textContent = "DALEEEEE!";
       botoes.style.display = "none";
       palmeiras.style.display = "block";
-      hino.play();
       palmeiras.style.animation = "pular 1s infinite ease-in-out";
+      hino.play();
     });
   </script>
 </body>
